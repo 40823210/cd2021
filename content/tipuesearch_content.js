@@ -1,0 +1,1 @@
+var tipuesearch = {"pages": [{'title': 'About', 'text': 'W2-W4 (3 Weeks): 二人一組 \n 40823210李柏諺、40823209顏沐恩 \n', 'tags': '', 'url': 'About.html'}, {'title': 'Work', 'text': '', 'tags': '', 'url': 'Work.html'}, {'title': 'w1', 'text': '', 'tags': '', 'url': 'w1.html'}, {'title': '筆記', 'text': '', 'tags': '', 'url': '筆記.html'}]};
