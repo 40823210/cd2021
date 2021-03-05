@@ -214,27 +214,9 @@ g.es("admin pelican 近端執行完畢")
 </t>
 <t tx="yen.20170108171930.1">@language python
 import os
-import subprocess
-import threading
-import http.server, ssl
 
-def domake():
-    # build directory
-    os.chdir("./../")
-    server_address = ('localhost', 5443)
-    httpd = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
-    httpd.socket = ssl.wrap_socket(httpd.socket,
-                                   server_side=True,
-                                   certfile='localhost.crt',
-                                   keyfile='localhost.key',
-                                   ssl_version=ssl.PROTOCOL_TLSv1)
-    print(os.getcwd())
-    print("5443 https server started")
-    httpd.serve_forever()
-
-# 利用執行緒執行 https 伺服器
-make = threading.Thread(target=domake)
-make.start()</t>
+os.system("pelican markdown -o blog -s publishconf.py")
+g.es("admin pelican Github 執行完畢")</t>
 <t tx="yen.20170108171939.1">@language python
 import os
 import subprocess
