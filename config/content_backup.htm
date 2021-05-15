@@ -19,6 +19,7 @@
 <h4>40823217莊子靖</h4>
 <h4>網站:<a href="https://40823217.github.io/cd2021/content/index.html">https://40823217.github.io/cd2021/content/index.html</a></h4>
 <h4>倉儲:<a href="https://github.com/40823217/cd2021">https://github.com/40823217/cd2021</a></h4>
+<h4><span>W10-W18 (9 Weeks): 八人一組</span></h4>
 <h1>Stage1-bg18</h1>
 <h2>w1</h2>
 <p>1.下載<a href="https://github.com/mdecourse/cd2021/discussions/7">可攜程式系統</a></p>
@@ -111,7 +112,8 @@ leo</pre>
 <p>PDF:<a href="/downloads/水球發射器.pdf">水球發射器.pdf</a></p>
 <h4>報告過程影片</h4>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/RD6SXI_LO1c" title="YouTube video player" width="560"></iframe></p>
-<p></p><h1>Stage2-bg11</h1>
+<p></p>
+<h1>Stage2-bg11</h1>
 <h2>w5</h2>
 <p>乙班各組stag1報告時間</p>
 <p><iframe height="300" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSszf2Q6Bdol5Xc-MQ6svZBLFly9WAJTjwYzCmahm0JDIi4LK3CA2TC6aWoqYptu1owO8KbYYpb3R-8/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false" width="500"></iframe></p>
@@ -190,7 +192,118 @@ leo</pre>
 <p><strong>1.<span>Reveal</span></strong></p>
 <p><strong>2.<span>youtube</span></strong></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/JmPAi_g18L8" title="YouTube video player" width="560"></iframe></p>
-<p><strong>3.PDF(<a href="/downloads/stage2-bg11.pdf">下載</a>)</strong></p><h1>影片</h1>
+<p><strong>3.PDF(<a href="/downloads/stage2-bg11.pdf">下載</a>)</strong></p>
+<h1>Stage3-bg2</h1>
+<h2>task1</h2>
+<p><span>◾</span>先到task1將<a href="http://mde.tw/cd2021/downloads/stage3/stage3_2b.txt">stage3_2b.txt</a><span><span> </span>內容下載</span></p>
+<p><span>◾將以下程式碼存至與txt檔同目錄下，可初步資料讀取程式</span></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false"># open file, default is read mode, since txt content no chinese char
+# no encoding = "UTF-8" is needed
+with open("stage3_2a.txt") as fh:
+    # readlines will read into the whole line and put into list format
+    # has \n at the end of each line
+    data = fh.readlines()
+#print(len(data))
+for i in range(len(data)):
+    group = data[i].rstrip("\n").split("\t")
+    print(group)
+# the following will use group data to generate needed html</pre>
+<p><span>◾再利用以下程式碼將各組的連結顯現</span></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">def stu2b(account):
+    if account == "40823231":
+        return account + "-2"
+#將學號40823231改成40823231-2
+    elif account[0:3] == "407":
+        return "s" + account
+#將學號407xxxxx改成s407xxxxx
+    else:
+        return account
+#剩餘的其他學號不變
+ 
+teamb = []
+ 
+# open file, default is read mode, since txt content no chinese char
+# no encoding = "UTF-8" is needed
+with open("stage3_2b.txt") as fh:
+#開啟stage3_2b.txt檔案
+    # readlines will read into the whole line and put into list format
+    # has \n at the end of each line
+    data = fh.readlines()
+#print(len(data))
+for i in range(len(data)):
+    group = data[i].rstrip("\n").split("\t")
+    teamb.append(group)
+     
+output = ""    
+seperator = "-"*10 + "&lt;br /&gt;"
+#產生分隔線
+ 
+for i in teamb[0:]:
+    team = i[0]
+    leader = stu2b(i[1])
+    m1 = stu2b(i[3])
+    m2 = stu2b(i[5])
+    m3 = stu2b(i[7])
+    m4 = stu2b(i[9])
+    m5 = stu2b(i[11])
+    m6 = stu2b(i[13])
+#小組、組長、其他六個組員
+     
+    try:
+        m7 = stu2b(i[15])
+    except:
+        m7 = ""
+#第七個組員
+    try:
+        m8 = stu2b(i[17])
+    except:
+        m8 = ""
+#第八個組員
+         
+    leaderrepo = "&lt;a href='http://github.com/" + leader + "/cd2021'&gt;" + leader + " repo&lt;/a&gt;"
+    leadersite = "&lt;a href='http://" + leader + ".github.io/cd2021'&gt;" + leader +  " site&lt;/a&gt;"
+    m1repo = "&lt;a href='http://github.com/" + m1 + "/cd2021'&gt;" + m1 + " repo&lt;/a&gt;"
+    m1site = "&lt;a href='http://" + m1 + ".github.io/cd2021'&gt;" + m1 +  " site&lt;/a&gt;"
+    m2repo = "&lt;a href='http://github.com/" + m2 + "/cd2021'&gt;" + m2 + " repo&lt;/a&gt;"
+    m2site = "&lt;a href='http://" + m2 + ".github.io/cd2021'&gt;" + m2 +  " site&lt;/a&gt;"
+    m3repo = "&lt;a href='http://github.com/" + m3 + "/cd2021'&gt;" + m3 + " repo&lt;/a&gt;"
+    m3site = "&lt;a href='http://" + m3 + ".github.io/cd2021'&gt;" + m3 +  " site&lt;/a&gt;"
+    m4repo = "&lt;a href='http://github.com/" + m4 + "/cd2021'&gt;" + m4 + " repo&lt;/a&gt;"
+    m4site = "&lt;a href='http://" + m4 + ".github.io/cd2021'&gt;" + m4 +  " site&lt;/a&gt;"
+    m5repo = "&lt;a href='http://github.com/" + m5 + "/cd2021'&gt;" + m5 + " repo&lt;/a&gt;"
+    m5site = "&lt;a href='http://" + m5 + ".github.io/cd2021'&gt;" + m5 +  " site&lt;/a&gt;"
+    m6repo = "&lt;a href='http://github.com/" + m6 + "/cd2021'&gt;" + m6 + " repo&lt;/a&gt;"
+    m6site = "&lt;a href='http://" + m6 + ".github.io/cd2021'&gt;" + m6 +  " site&lt;/a&gt;"
+  
+ 
+    teamrepo = "&lt;a href='http://github.com/" + leader + "/" + team + "'&gt;" + team + " repo&lt;/a&gt;"
+    teamsite =  "&lt;a href='http://" + m1 + ".github.io/" + team + "'&gt;" + team +  " site&lt;/a&gt;"
+ 
+    output += teamrepo + " | " + teamsite + " | " +leaderrepo + " | " + leadersite + " | " +m1repo + " | " + m1site + " | " +m2repo + " | " + m2site + " | " +m3repo + " | " + m3site + " | " +m4repo + " | " + m4site + " | " +m5repo + " | " + m5site + " | " +m6repo + " | " + m6site
+#分別設置小組、組長以及組員的倉儲&amp;網站連結
+     
+    if m7 != "":
+       m7repo = "&lt;a href='http://github.com/" + m7 + "/cd2021'&gt;" + m7 + " repo&lt;/a&gt;"
+       m7site = "&lt;a href='http://" + m7 + ".github.io/cd2021'&gt;" + m7 +  " site&lt;/a&gt;"   
+       output += " |  " + m7repo + "| " + m7site
+    else:
+        output += "" 
+#如果有第七個組員會再加倉儲和網站沒有的話就空白
+     
+    if m8 != "":
+       m8repo = "&lt;a href='http://github.com/" + m8 + "/cd2021'&gt;" + m8 + " repo&lt;/a&gt;"
+       m8site = "&lt;a href='http://" + m8 + ".github.io/cd2021'&gt;" + m8 +  " site&lt;/a&gt;"   
+       output += " |  " + m8repo + "| " + m8site + "&lt;br /&gt;" + seperator
+    else:
+        output += "&lt;br /&gt;" + seperator
+#如果有第八個組員會再加倉儲和網站最後再加分隔線
+ 
+ 
+print(output)
+# the following will use group data to generate needed html
+#輸出</pre>
+<p><span>◾結果</span></p>
+<p><a href="http://github.com/40823245/stage3-bg1">stage3-bg1 repo</a> | <a href="http://40823251.github.io/stage3-bg1">stage3-bg1 site</a> | <a href="http://github.com/40823245/cd2021">40823245 repo</a> | <a href="http://40823245.github.io/cd2021">40823245 site</a> | <a href="http://github.com/40823251/cd2021">40823251 repo</a> | <a href="http://40823251.github.io/cd2021">40823251 site</a> | <a href="http://github.com/40823208/cd2021">40823208 repo</a> | <a href="http://40823208.github.io/cd2021">40823208 site</a> | <a href="http://github.com/40823213/cd2021">40823213 repo</a> | <a href="http://40823213.github.io/cd2021">40823213 site</a> | <a href="http://github.com/40823232/cd2021">40823232 repo</a> | <a href="http://40823232.github.io/cd2021">40823232 site</a> | <a href="http://github.com/40823234/cd2021">40823234 repo</a> | <a href="http://40823234.github.io/cd2021">40823234 site</a> | <a href="http://github.com/40823235/cd2021">40823235 repo</a> | <a href="http://40823235.github.io/cd2021">40823235 site</a> | <a href="http://github.com/40823246/cd2021">40823246 repo</a>| <a href="http://40823246.github.io/cd2021">40823246 site</a><br/>----------<br/><a href="http://github.com/40823217/stage3-bg2">stage3-bg2 repo</a> | <a href="http://40823201.github.io/stage3-bg2">stage3-bg2 site</a> | <a href="http://github.com/40823217/cd2021">40823217 repo</a> | <a href="http://40823217.github.io/cd2021">40823217 site</a> | <a href="http://github.com/40823201/cd2021">40823201 repo</a> | <a href="http://40823201.github.io/cd2021">40823201 site</a> | <a href="http://github.com/40823209/cd2021">40823209 repo</a> | <a href="http://40823209.github.io/cd2021">40823209 site</a> | <a href="http://github.com/40823210/cd2021">40823210 repo</a> | <a href="http://40823210.github.io/cd2021">40823210 site</a> | <a href="http://github.com/40823206/cd2021">40823206 repo</a> | <a href="http://40823206.github.io/cd2021">40823206 site</a> | <a href="http://github.com/40823207/cd2021">40823207 repo</a> | <a href="http://40823207.github.io/cd2021">40823207 site</a> | <a href="http://github.com/40823223/cd2021">40823223 repo</a> | <a href="http://40823223.github.io/cd2021">40823223 site</a> | <a href="http://github.com/40823224/cd2021">40823224 repo</a>| <a href="http://40823224.github.io/cd2021">40823224 site</a><br/>----------<br/><a href="http://github.com/40823236/stage3-bg3">stage3-bg3 repo</a> | <a href="http://40823202.github.io/stage3-bg3">stage3-bg3 site</a> | <a href="http://github.com/40823236/cd2021">40823236 repo</a> | <a href="http://40823236.github.io/cd2021">40823236 site</a> | <a href="http://github.com/40823202/cd2021">40823202 repo</a> | <a href="http://40823202.github.io/cd2021">40823202 site</a> | <a href="http://github.com/40823203/cd2021">40823203 repo</a> | <a href="http://40823203.github.io/cd2021">40823203 site</a> | <a href="http://github.com/40823212/cd2021">40823212 repo</a> | <a href="http://40823212.github.io/cd2021">40823212 site</a> | <a href="http://github.com/40823219/cd2021">40823219 repo</a> | <a href="http://40823219.github.io/cd2021">40823219 site</a> | <a href="http://github.com/40823222/cd2021">40823222 repo</a> | <a href="http://40823222.github.io/cd2021">40823222 site</a> | <a href="http://github.com/40823231-2/cd2021">40823231-2 repo</a> | <a href="http://40823231-2.github.io/cd2021">40823231-2 site</a> | <a href="http://github.com/40823244/cd2021">40823244 repo</a>| <a href="http://40823244.github.io/cd2021">40823244 site</a><br/>----------<br/><a href="http://github.com/40823239/stage3-bg4">stage3-bg4 repo</a> | <a href="http://s40723140.github.io/stage3-bg4">stage3-bg4 site</a> | <a href="http://github.com/40823239/cd2021">40823239 repo</a> | <a href="http://40823239.github.io/cd2021">40823239 site</a> | <a href="http://github.com/s40723140/cd2021">s40723140 repo</a> | <a href="http://s40723140.github.io/cd2021">s40723140 site</a> | <a href="http://github.com/s40723128/cd2021">s40723128 repo</a> | <a href="http://s40723128.github.io/cd2021">s40723128 site</a> | <a href="http://github.com/s40723139/cd2021">s40723139 repo</a> | <a href="http://s40723139.github.io/cd2021">s40723139 site</a> | <a href="http://github.com/s40723106/cd2021">s40723106 repo</a> | <a href="http://s40723106.github.io/cd2021">s40723106 site</a> | <a href="http://github.com/s40723135/cd2021">s40723135 repo</a> | <a href="http://s40723135.github.io/cd2021">s40723135 site</a> | <a href="http://github.com/s40723143/cd2021">s40723143 repo</a> | <a href="http://s40723143.github.io/cd2021">s40723143 site</a> | <a href="http://github.com/s40723215/cd2021">s40723215 repo</a>| <a href="http://s40723215.github.io/cd2021">s40723215 site</a><br/>----------<br/><a href="http://github.com/40823221/stage3-bg5">stage3-bg5 repo</a> | <a href="http://40823204.github.io/stage3-bg5">stage3-bg5 site</a> | <a href="http://github.com/40823221/cd2021">40823221 repo</a> | <a href="http://40823221.github.io/cd2021">40823221 site</a> | <a href="http://github.com/40823204/cd2021">40823204 repo</a> | <a href="http://40823204.github.io/cd2021">40823204 site</a> | <a href="http://github.com/40823205/cd2021">40823205 repo</a> | <a href="http://40823205.github.io/cd2021">40823205 site</a> | <a href="http://github.com/40823220/cd2021">40823220 repo</a> | <a href="http://40823220.github.io/cd2021">40823220 site</a> | <a href="http://github.com/40823228/cd2021">40823228 repo</a> | <a href="http://40823228.github.io/cd2021">40823228 site</a> | <a href="http://github.com/40823237/cd2021">40823237 repo</a> | <a href="http://40823237.github.io/cd2021">40823237 site</a> | <a href="http://github.com/40823242/cd2021">40823242 repo</a> | <a href="http://40823242.github.io/cd2021">40823242 site</a> | <a href="http://github.com/40823250/cd2021">40823250 repo</a>| <a href="http://40823250.github.io/cd2021">40823250 site</a> | <a href="http://github.com/40832244/cd2021">40832244 repo</a>| <a href="http://40832244.github.io/cd2021">40832244 site</a><br/>----------<br/><a href="http://github.com/40823225/stage3-bg6">stage3-bg6 repo</a> | <a href="http://40823214.github.io/stage3-bg6">stage3-bg6 site</a> | <a href="http://github.com/40823225/cd2021">40823225 repo</a> | <a href="http://40823225.github.io/cd2021">40823225 site</a> | <a href="http://github.com/40823214/cd2021">40823214 repo</a> | <a href="http://40823214.github.io/cd2021">40823214 site</a> | <a href="http://github.com/40823218/cd2021">40823218 repo</a> | <a href="http://40823218.github.io/cd2021">40823218 site</a> | <a href="http://github.com/40823211/cd2021">40823211 repo</a> | <a href="http://40823211.github.io/cd2021">40823211 site</a> | <a href="http://github.com/40823248/cd2021">40823248 repo</a> | <a href="http://40823248.github.io/cd2021">40823248 site</a> | <a href="http://github.com/40823247/cd2021">40823247 repo</a> | <a href="http://40823247.github.io/cd2021">40823247 site</a> | <a href="http://github.com/40823216/cd2021">40823216 repo</a> | <a href="http://40823216.github.io/cd2021">40823216 site</a> | <a href="http://github.com/40823238/cd2021">40823238 repo</a>| <a href="http://40823238.github.io/cd2021">40823238 site</a><br/>----------<br/><a href="http://github.com/40623144/stage3-bg7">stage3-bg7 repo</a> | <a href="http://40823233.github.io/stage3-bg7">stage3-bg7 site</a> | <a href="http://github.com/40623144/cd2021">40623144 repo</a> | <a href="http://40623144.github.io/cd2021">40623144 site</a> | <a href="http://github.com/40823233/cd2021">40823233 repo</a> | <a href="http://40823233.github.io/cd2021">40823233 site</a> | <a href="http://github.com/s40723224/cd2021">s40723224 repo</a> | <a href="http://s40723224.github.io/cd2021">s40723224 site</a> | <a href="http://github.com/40823241/cd2021">40823241 repo</a> | <a href="http://40823241.github.io/cd2021">40823241 site</a> | <a href="http://github.com/40423155/cd2021">40423155 repo</a> | <a href="http://40423155.github.io/cd2021">40423155 site</a> | <a href="http://github.com/40823227/cd2021">40823227 repo</a> | <a href="http://40823227.github.io/cd2021">40823227 site</a> | <a href="http://github.com/s40723233/cd2021">s40723233 repo</a> | <a href="http://s40723233.github.io/cd2021">s40723233 site</a><br/>----------</p><h1>影片</h1>
 <h4>每週拍影片紀錄進度&amp;過程。</h4>
 <h2>第2週</h2>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="350" src="https://www.youtube.com/embed/0Rrnr7pPfZc" width="750"></iframe></p>
@@ -202,7 +315,8 @@ leo</pre>
 <p></p>
 <p>-------------------------------------------------------------------------------------------------------</p>
 <p></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/WvX9c24RtDc" width="560"></iframe></p><h2>第5週</h2>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/WvX9c24RtDc" width="560"></iframe></p>
+<h2>第5週</h2>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/50cuoGl1W1Q" title="YouTube video player" width="560"></iframe></p>
 <h2>第6週</h2>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/u6ME1r4MH00" title="YouTube video player" width="560"></iframe></p>
@@ -216,7 +330,8 @@ leo</pre>
 <p></p>
 <p>-------------------------------------------------------------------------------------------------------</p>
 <p></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/JmPAi_g18L8" title="YouTube video player" width="560"></iframe></p><h1>問題</h1>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/JmPAi_g18L8" title="YouTube video player" width="560"></iframe></p>
+<h1>問題</h1>
 <p><img caption="false" height="284" src="/images/製造問題.PNG" width="250"/>~~~~~   <img alt="" height="199" src="/images/檔片.PNG" width="200"/></p>
 <p>此處螺絲放上去後，會與桶身有干涉狀態，後來將檔片多挖除2圈料來改善</p>
 <h1>討論</h1>
