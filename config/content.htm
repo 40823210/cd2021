@@ -502,3 +502,20 @@ python wsgi.py</pre>
 <p><span><img alt="" height="281" src="/images/cs顏色5.PNG" width="500"/></span></p>
 <h4><span>◾實際操作影片</span></h4>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/J3Yu9IAtjts" title="YouTube video player" width="560"></iframe></p>
+<h2>CoppeliaSim碰撞&amp;動態</h2>
+<h4>"碰撞"屬性<br/>意思即為開啟狀態下，物體會和空間中其他物體發生碰撞，從而模擬實際物理作用狀態。<br/>例:關閉時物體會直接穿過地面，開啟後物體會停於地面上。</h4>
+<h4>碰撞打勾設定解釋:</h4>
+<h4>二物體"無"父子關係的物體，使用"下排"勾勾作設定，假設在相同位置都有勾勾的話，它們就會發生碰撞；假設在每一個位置上，都不會同時出現勾勾的話，他們就不會發生碰撞。<br/>二物體"有"父子關係的物體，使用"上排"勾勾作設定，假設在相同位置都有勾勾的話，它們就會發生碰撞；假設在每一個位置上，都不會同時出現勾勾的話，他們就不會發生碰撞。</h4>
+<h4>"動態"屬性<br/>意思即為關閉狀態下，物體會被視為與世界坐標系固連的關係。<br/>例:關閉時可懸浮於空間之中，不受其他物體碰撞而移動；開啟後會受到向下的重力作用&amp;會受到和其它物件碰撞而產生不同方向的力。</h4>
+<p><span>-------------------------------------------------------------------------------------------</span></p>
+<h4>"開啟碰撞、動態屬性"</h4>
+<h4><span>◾在物體圖示點2下左鍵，開啟屬性對話框</span></h4>
+<p><span><img alt="" height="281" src="/images/碰撞0.png" width="500"/></span></p>
+<h4><span>◾</span><span>點Show dynamic properties dialog</span></h4>
+<p><span><img alt="" height="282" src="/images/碰撞1.PNG" width="500"/></span></p>
+<h4><span>◾</span><span>點Body is respondable(開啟碰撞)，</span><span>框中勾勾用來做碰撞設定</span></h4>
+<p><span><img alt="" height="282" src="/images/碰撞2.PNG" width="500"/></span></p>
+<h4><span>◾</span><span>點Body is dynamic(開啟動態)</span></h4>
+<p><span><img alt="" height="280" src="/images/碰撞3.PNG" width="500"/></span></p>
+<h4><span>◾實際操作影片</span></h4>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/3u3iC24gwB8" title="YouTube video player" width="560"></iframe></p>
