@@ -133,14 +133,50 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">第8週 << <a href='第8週.html'>Previous</a> <a href='gitter討論.html'>Next</a> >> gitter討論<br /><h1>第9週(報告)</h1>
-<p>課中報告影片</p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/cqaE9jup50Q" title="YouTube video player" width="560"></iframe></p>
-<p></p>
-<p>-------------------------------------------------------------------------------------------------------</p>
-<p></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/JmPAi_g18L8" title="YouTube video player" width="560"></iframe></p>
-<br />第8週 << <a href='第8週.html'>Previous</a> <a href='gitter討論.html'>Next</a> >> gitter討論</div>
+    <div id="tipue_search_content">gitlab << <a href='gitlab.html'>Previous</a> <br /><h1>gitlab-ssh</h1>
+<h4><span>利用 SSH 對 Gitlab 連線</span></h4>
+<h4><span> 1.首先必須要將 OpenSSH 格式的 public key 登錄到 Gitlab 帳號下 </span></h4>
+<h4><span>2.確定已經利用 putty.exe 建立 session 名稱為 gitlab.com 的設定, 其中設定 AUTH 與 Proxy 資料 </span></h4>
+<h4><span>3.修改各倉儲中 .git/config 的 gitlab remote add 設定, 以 url = git@gitlab.com:user_name/url 對 gitlab 連接.</span></h4>
+<p><span>----------</span></p>
+<h4>◾資料夾➝Portablegit➝bin➝sh.exe</h4>
+<p><span><img alt="" height="285" src="./../images/gitlabssh1.PNG" width="500"/></span></p>
+<h4><span>◾輸入ssh-keygen -t rsa -b 4096 -C "40823210-gitlab"➝按enter➝輸入/y/tmp/id_rsa_gitlab➝按enter➝按enter</span></h4>
+<h4><span><img alt="" height="281" src="./../images/gitlabssh2.PNG" width="500"/></span></h4>
+<h4><span>◾資料夾➝.git➝config➝更改[remote"gitlab"]的url=git@gitlab.com:40823210_cd2021.git</span></h4>
+<p><span><img alt="" height="281" src="./../images/gitlabssh3.PNG" width="500"/></span></p>
+<h4><span>◾資料夾➝PuTTY➝puttygen.exe</span></h4>
+<p><span><img alt="" height="282" src="./../images/gitlabssh4.PNG" width="500"/></span></p>
+<h4><span>◾點Load</span></h4>
+<p><span><img alt="" height="281" src="./../images/gitlabssh5.PNG" width="500"/></span></p>
+<h4><span>◾選id_rsa_gitlab➝開啟</span></h4>
+<p><span><img alt="" height="280" src="./../images/gitlabssh6.PNG" width="500"/></span></p>
+<h4><span>◾點確定</span></h4>
+<p><span><img alt="" height="280" src="./../images/gitlabssh7.PNG" width="500"/></span></p>
+<h4><span>◾點Save private key</span></h4>
+<p><span><img alt="" height="282" src="./../images/gitlabssh8.PNG" width="500"/></span></p>
+<h4><span>◾點是(Y)</span></h4>
+<p><span><img alt="" height="280" src="./../images/gitlabssh9.PNG" width="500"/></span></p>
+<h4><span>◾資料夾➝tmp➝輸入40823210-gitlab.ppk➝存檔</span></h4>
+<p><span><img alt="" height="279" src="./../images/gitlabssh10.PNG" width="500"/></span></p>
+<h4><span>◾資料夾➝PuTTY➝putty.exe➝輸入(二處)gitlab.com➝Save</span></h4>
+<p><span><img alt="" height="281" src="./../images/gitlabssh11.PNG" width="500"/></span></p>
+<h4><span>◾點SSH➝Auth➝Browse...</span></h4>
+<p><span><img alt="" height="281" src="./../images/gitlabssh12.PNG" width="500"/></span></p>
+<h4><span>◾資料夾➝tmp➝選30823210-gitlab.ppk➝開啟</span></h4>
+<p><span><img alt="" height="283" src="./../images/gitlabssh13.PNG" width="500"/></span></p>
+<h4><span>◾點Session➝Save➝Open</span></h4>
+<p><span><img alt="" height="281" src="./../images/gitlabssh14.PNG" width="500"/></span></p>
+<h4><span>◾到gitlab➝點Add SSH key</span></h4>
+<p><span><img alt="" height="282" src="./../images/gitlabssh15.PNG" width="500"/></span></p>
+<h4><span>◾資料夾➝tmp➝開啟id_rsa_gitlab.pub➝複製全部內容</span></h4>
+<p><span><img alt="" height="281" src="./../images/gitlabssh16.PNG" width="500"/></span></p>
+<h4><span>◾將內容複製到SSH key➝Add key</span></h4>
+<p><span><img alt="" height="281" src="./../images/gitlabssh17.PNG" width="500"/></span></p>
+<h4><span>◾點SSH Keys重整➝即可看到新增的SSH keys</span></h4>
+<p><span><img alt="" height="285" src="./../images/gitlabssh18.PNG" width="500"/></span></p>
+<h4><span>◾實際操作影片</span></h4>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/cE309bAx4Uo" title="YouTube video player" width="560"></iframe></p><br />gitlab << <a href='gitlab.html'>Previous</a> </div>
         
     <!-- footer -->
       <div class="container">
