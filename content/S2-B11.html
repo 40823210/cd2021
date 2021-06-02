@@ -133,43 +133,120 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w6 << <a href='w6.html'>Previous</a> <a href='w7.html'>Next</a> >> w7<br /><h1>零件組合圖-2</h1>
-<p><span>本次零件由本人設計繪製</span></p>
+    <div id="tipue_search_content">S1-B18 << <a href='S1-B18.html'>Previous</a> <a href='task3.html'>Next</a> >> task3<br /><h1>S2-B11</h1>
+<h4>本人是stage2-bg11成員</h4>
+<h4><span>stage2 所完成的 coppeliasim 場景, 採 Python remote API 進行操控。</span></h4>
+<p>----------</p>
+<h4>(按鍵指令)</h4>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">1~9..........控制螺旋鉤子
+"空白建".....停止螺旋鉤子
+Z............關門
+X............暫停開/關門
+C............開門
+O............控制滾輪
+W............平台上升
+E............暫停平台
+S............下降平台
+esc..........結束</pre>
+<p><span>◾實際操作影片</span></p>
 <p><span></span></p>
-<p><a href="./../downloads/自動販賣機.iam">自動販賣機(組合)</a></p>
-<p><span><img caption="false" height="281" src="./../images/自動販賣機(組合).png" width="500"/></span></p>
-<p><span>*<br/><a href="./../downloads/本體.ipt">販賣機本體</a><br/></span></p>
-<p><span><img caption="false" height="282" src="./../images/販賣機本體.png" width="500"/></span></p>
-<p><span>*<br/><a href="./../downloads/蓋.ipt">販賣機門</a><br/></span></p>
-<p><span><img caption="false" height="282" src="./../images/販賣機門.png" width="500"/></span></p>
-<p><span>*<br/><a href="./../downloads/置物架.ipt">置物架</a><br/></span></p>
-<p><span><img caption="false" height="282" src="./../images/置物架.png" width="500"/></span></p>
-<p><span>*<br/><a href="./../downloads/鎖點支架.ipt">鎖點支架</a><br/></span></p>
-<p><span><img caption="false" height="282" src="./../images/鎖點支架.png" width="500"/></span></p>
-<p><span>*<br/><a href="./../downloads/上滑軌.ipt">上滑軌道</a><br/></span></p>
-<p><span><img caption="false" height="282" src="./../images/上滑軌道.png" width="500"/></span></p>
-<p><span>*<br/><a href="./../downloads/下滑軌.ipt">下滑軌道</a><br/></span></p>
-<p><span><img caption="false" height="282" src="./../images/下滑軌道.png" width="500"/></span></p>
-<p><span>*<br/><a href="./../downloads/上滑軌輪.ipt">上下滑軌輪</a><br/></span></p>
-<p><span><img caption="false" height="282" src="./../images/上下滑軌輪.png" width="500"/></span></p>
-<p><span>*<br/><a href="./../downloads/滾筒.ipt">滾筒</a><br/></span></p>
-<p><span><img caption="false" height="282" src="./../images/滾筒.png" width="500"/></span></p>
-<p><span>*<br/><a href="./../downloads/蝸桿支架.ipt">蝸桿支架</a><br/></span></p>
-<p><span><img caption="false" height="282" src="./../images/蝸桿支架.png" width="500"/></span></p>
-<p><span>*<br/><a href="./../downloads/蝸桿滑塊.ipt">蝸桿滑塊</a><br/></span></p>
-<p><span><img caption="false" height="282" src="./../images/蝸桿滑塊.png" width="500"/></span></p>
-<p><span>*<br/><a href="./../downloads/短蝸桿.ipt">短蝸桿</a><br/></span></p>
-<p><span><img caption="false" height="282" src="./../images/短蝸桿.png" width="500"/></span></p>
-<p><span>*<br/><a href="./../downloads/長蝸桿.ipt">長蝸桿</a><br/></span></p>
-<p><span><img caption="false" height="282" src="./../images/長蝸桿.png" width="500"/></span></p>
-<p><span>*<br/><a href="./../downloads/位移平台.ipt">位移平台</a><br/></span></p>
-<p><span><img caption="false" height="282" src="./../images/位移平台.png" width="500"/></span></p>
-<p><span>*<br/><a href="./../downloads/螺旋鉤子.ipt">螺旋鉤子</a><br/></span></p>
-<p><span><img caption="false" height="282" src="./../images/螺旋鉤子.png" width="500"/></span></p>
-<p><span>*<br/><a href="./../downloads/螺旋鉤子底座.ipt">螺旋鉤子底座</a><br/></span></p>
-<p><span><img caption="false" height="282" src="./../images/螺旋鉤子底座.png" width="500"/></span></p>
-<p></p>
-<br />w6 << <a href='w6.html'>Previous</a> <a href='w7.html'>Next</a> >> w7</div>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/yz_iSELMHd8" title="YouTube video player" width="560"></iframe></p>
+<p>----------<br/>(程式碼)</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">import sim as vrep
+import math
+import random
+import time
+import keyboard
+
+print ('Start')
+
+# Close eventual old connections
+vrep.simxFinish(-1)
+# Connect to V-REP remote server
+clientID = vrep.simxStart('192.168.0.12', 19997, True, True, 5000, 5)
+
+if clientID != -1:
+    print ('Connected to remote API server')
+    
+    res = vrep.simxAddStatusbarMessage(
+        clientID, "40823210",
+        vrep.simx_opmode_oneshot)
+    if res not in (vrep.simx_return_ok, vrep.simx_return_novalue_flag):
+        print("Could not add a message to the status bar.")
+
+    opmode = vrep.simx_opmode_oneshot_wait
+    
+    vrep.simxStartSimulation(clientID, opmode)
+    ret,DOOR_handle=vrep.simxGetObjectHandle(clientID,"joint4",opmode)
+    ret,C1_handle=vrep.simxGetObjectHandle(clientID,"joint2",opmode)
+    ret,B1_handle=vrep.simxGetObjectHandle(clientID,"joint1",opmode)
+    ret,SP5_handle=vrep.simxGetObjectHandle(clientID,"joint",opmode)
+    ret,S1_1_handle=vrep.simxGetObjectHandle(clientID,"S1_1",opmode)
+    ret,S2_1_handle=vrep.simxGetObjectHandle(clientID,"S2_1",opmode)
+    ret,S3_1_handle=vrep.simxGetObjectHandle(clientID,"S3_1",opmode)
+    ret,S4_1_handle=vrep.simxGetObjectHandle(clientID,"S4_1",opmode)
+    ret,S5_1_handle=vrep.simxGetObjectHandle(clientID,"S5_1",opmode)
+    ret,S6_1_handle=vrep.simxGetObjectHandle(clientID,"S6_1",opmode)
+    ret,S7_1_handle=vrep.simxGetObjectHandle(clientID,"S7_1",opmode)
+    ret,S8_1_handle=vrep.simxGetObjectHandle(clientID,"S8_1",opmode)
+    ret,S9_1_handle=vrep.simxGetObjectHandle(clientID,"S9_1",opmode)
+    ret,S10_1_handle=vrep.simxGetObjectHandle(clientID,"S10_1",opmode)
+    #ret,main = vrep.simxGetObjectHandle(clientID, "main", opmode)
+    while True:
+    
+        #keyboard "5" 
+        if keyboard.is_pressed("5"):
+            vrep.simxSetJointTargetVelocity(clientID,SP5_handle,1,opmode)
+        
+        #keyboard "space" 
+        if keyboard.is_pressed("space"):
+            vrep.simxSetJointTargetVelocity(clientID,SP5_handle,0,opmode)
+        #keyboard "O" 
+        if keyboard.is_pressed("O"):
+            vrep.simxSetJointTargetVelocity(clientID,S1_1_handle,100,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,S2_1_handle,100,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,S3_1_handle,100,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,S4_1_handle,100,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,S5_1_handle,100,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,S6_1_handle,100,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,S7_1_handle,100,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,S8_1_handle,100,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,S9_1_handle,100,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,S10_1_handle,100,opmode)
+        #keyboard "W" 
+        if keyboard.is_pressed("W"):
+            vrep.simxSetJointTargetVelocity(clientID,C1_handle,1,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,B1_handle,2,opmode)
+         #keyboard "E" 
+        if keyboard.is_pressed("E"):
+            vrep.simxSetJointTargetVelocity(clientID,C1_handle,0,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,B1_handle,0,opmode)   
+        #keyboard "S" 
+        if keyboard.is_pressed("S"):
+            vrep.simxSetJointTargetVelocity(clientID,C1_handle,-1,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,B1_handle,-2,opmode)
+        #keyboard "Z" 
+        if keyboard.is_pressed("Z"):
+            vrep.simxSetJointTargetVelocity(clientID,DOOR_handle,1000,opmode)
+       #keyboard "X" 
+        if keyboard.is_pressed("X"):
+            vrep.simxSetJointTargetVelocity(clientID,DOOR_handle,0,opmode)
+        #keyboard "C" 
+        if keyboard.is_pressed("C"):
+            vrep.simxSetJointTargetVelocity(clientID,DOOR_handle,-1.5,opmode)              
+        #keyboard "esc" 
+        if  keyboard.is_pressed("esc"):
+            vrep.simxStopSimulation(clientID, opmode)
+            break
+        
+else:
+    print ('Failed connecting to remote API server')
+    print ('End')</pre>
+<p>---------</p>
+<p><span class="style-scope yt-formatted-string" dir="auto">影片場景之ttt檔及其他相關檔案，可至本人的個人倉儲下載:</span></p>
+<p><span class="style-scope yt-formatted-string" dir="auto"></span><a class="yt-simple-endpoint style-scope yt-formatted-string" dir="auto" href="https://www.youtube.com/redirect?event=video_description&amp;redir_token=QUFFLUhqbEg0QXBfOGFVaURiaGJ3ZGd5YThnTURPY2UwZ3xBQ3Jtc0trbXp5X2tKX3c4emdCU25zc3JyMmg3YkMweHFRTnY1WjdsaW1vS2cwLVEtVzNqV0hzcDdKNW9iM29GRXpBT3JvQVQwQXhudkhWU0ZRbTFSR2hsRjJKWWVTR2JTQy02YjBnZE5haEpUMko2dFIzTHZDOA&amp;q=https%3A%2F%2Fgithub.com%2F40823210%2Fcd2021" rel="nofollow" spellcheck="false" target="_blank">https://github.com/40823210/cd2021</a><span class="style-scope yt-formatted-string" dir="auto"></span></p>
+<p><span class="style-scope yt-formatted-string" dir="auto">(檔案位置:task2 ➝販賣機)</span></p>
+<br />S1-B18 << <a href='S1-B18.html'>Previous</a> <a href='task3.html'>Next</a> >> task3</div>
         
     <!-- footer -->
       <div class="container">
