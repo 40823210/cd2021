@@ -647,18 +647,241 @@ esc..........結束</pre>
 <h4><em><strong>"roboDK"</strong></em></h4>
 <h4><span>利用外部 Python 程式重建機械手臂 Pick and Place 模擬</span></h4>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/Z4kHoyNX8o4" title="YouTube video player" width="560"></iframe></p>
-<p><span></span></p><h2>w16</h2>
-<h4><strong>"Stage3進度"</strong></h4>
-<h4><span>模型繪製:40823210 ； 日期:06/04</span></h4>
-<h4>此次新增模型people and wheelchair，為了凸顯免彎腰販賣機是為了服務行動不便之人。</h4>
-<h4>(inventor繪製)</h4>
-<p><img caption="false" height="141" src="/images/人.png" width="250"/>   <img caption="false" height="141" src="/images/輪椅.png" width="250"/><img caption="false" height="283" src="/images/輪椅人.png" width="500"/></p>
-<h4><span class="style-scope yt-formatted-string" dir="auto">圖片之stl檔及相關資料，可至stage3-bg2倉儲下載:<span> </span></span><a class="yt-simple-endpoint style-scope yt-formatted-string" dir="auto" href="https://www.youtube.com/redirect?event=video_description&amp;redir_token=QUFFLUhqbFgyaE9kOHNQQ1BIUGMwQ2RzVXBpSV9LREtlUXxBQ3Jtc0ttZnBuMWFDRDFWV0s1czFLNk0tVVFiakxzWTdHYW1UV3ltZ0plYWhCX2cxWUFuTTVrd2pQYXRmOEs2QmdSQ0NpWERaNWN4UUkzNGlPS3QyY3huUWVmTzF5QjBRaE5EZkxuYkpBa29DcG05UTZuVVhNTQ&amp;q=https%3A%2F%2Fgithub.com%2F40823210%2Fstage3-bg2" rel="nofollow" spellcheck="false" target="_blank">https://github.com/40823210/stage3-bg2</a></h4>
-<h4>(檔案名稱: people and wheelchair)</h4>
-<h4>----------</h4>
-<h4>(coppeliasim)</h4>
-<p><img alt="" height="281" src="/images/cp輪椅人.png" width="500"/></p>
-<h4><strong></strong></h4><h2>w17</h2>
+<p><span></span></p>
+<h2>w16</h2>
+<h4><span>Google Drive下載連結:</span><a href="https://drive.google.com/file/d/1BKMA9DMvI_cxyJNDcPQxKfa3I4id9ED2/view?usp=sharing">https://drive.google.com/file/d/1BKMA9DMvI_cxyJNDcPQxKfa3I4id9ED2/view?usp=sharing</a></h4>
+<p>----------</p>
+<h4>項目一:Onshape 零組件繪製<br/><strong></strong></h4>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/53tlgidjyiI" title="YouTube video player" width="560"></iframe></p>
+<h4>項目二:建立 CoppeliaSim 4.1.0 MTB robot 場景</h4>
+<p>項目三:手臂末端加入 components-gripper-suction pad 吸盤</p>
+<h4>(項目二/三 內容放於同一影片)</h4>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/9q1P_lqvaG0" title="YouTube video player" width="560"></iframe></p>
+<h4>項目四:逆向運動學函式</h4>
+<p>(有2部影片分別為 鍵盤控制/<span>程式迴圈 兩種方式)</span></p>
+<p><span>"鍵盤控制"</span></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">function sysCall_init()
+    joint1=sim.getObjectHandle('joint1')
+    joint2=sim.getObjectHandle('joint2')
+    jointz=sim.getObjectHandle('jointz')
+    joint3=sim.getObjectHandle('joint3')
+    sim.setJointTargetPosition(joint1,0)
+    sim.setJointTargetPosition(joint2,0)
+    sim.setJointTargetPosition(joint3,0)
+    sim.setJointTargetPosition(jointz,0)
+    deg1=0
+    deg2=0
+    deg3=0
+end
+
+function sysCall_actuation()
+    message,auxiliaryData=sim.getSimulatorMessage()
+    while message~=-1 do
+        if (message==sim.message_keypress) then
+            if (auxiliaryData[1]==2009) then
+            deg1=deg1+1
+            deg3=deg2-deg1
+            sim.setJointTargetPosition(joint1,deg1*math.pi/180)
+            end
+            if (auxiliaryData[1]==2010) then
+            deg1=deg1-1
+            deg3=deg2-deg1
+            sim.setJointTargetPosition(joint1,deg1*math.pi/180)
+            end
+            if (auxiliaryData[1]==2007) then
+            deg2=deg2+1
+            deg3=deg1-deg2
+            sim.setJointTargetPosition(joint2,deg2*math.pi/180)
+            end
+            if (auxiliaryData[1]==2008) then
+            deg2=deg2-1
+            deg3=deg1-deg2
+            sim.setJointTargetPosition(joint2,deg2*math.pi/180)
+            end
+            if (auxiliaryData[1]==115) then
+                sim.setJointTargetPosition(jointz,-0.085)
+                sim.setIntegerSignal("pad_switch",1)
+            end
+            if (auxiliaryData[1]==119) then
+                sim.setJointTargetPosition(jointz,0)
+            end
+            if (auxiliaryData[1]==32) then
+                sim.setIntegerSignal("pad_switch",0)
+            end
+            sim.setJointTargetPosition(joint3,deg3*math.pi/180)
+        end
+    message,auxiliaryData=sim.getSimulatorMessage()
+    end
+end</pre>
+<p></p>
+<p><strong>鍵盤控制操作:</strong></p>
+<p><strong><span>⇧</span>-黃軸逆時鐘旋轉</strong></p>
+<p><strong><span>⇩</span>-黃軸順時鐘旋轉</strong></p>
+<p><b><span>⇦</span>-紫<strong>軸逆時鐘旋轉</strong></b></p>
+<p><b><span>⇨</span>-紫<strong>軸順時鐘旋轉</strong></b></p>
+<p><b>S-吸盤向下</b></p>
+<p><b>W-吸盤向上並吸取</b></p>
+<p><b>空白鍵-放下</b></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/vWAgFH1yGw8" title="YouTube video player" width="560"></iframe></p>
+<p>-</p>
+<p><span>"程式迴圈"</span></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">function sysCall_init()
+    corout=coroutine.create(coroutineMain)
+end
+
+function sysCall_actuation()
+    if coroutine.status(corout)~='dead' then
+        local ok,errorMsg=coroutine.resume(corout)
+        if errorMsg then
+            error(debug.traceback(corout,errorMsg),2)
+        end
+    end
+end
+
+function moving(x,y)
+    a=0.4
+    b=0.4
+    c=math.pow((math.pow(x,2)+math.pow(y,2)),0.5)
+    s=(a+b+c)/2
+    area=math.pow((s*(s-a)*(s-b)*(s-c)),0.5)
+    h=area/(2*c)
+    deg1_base=math.atan(x/y)
+    if x&lt;0 and y&lt;0 then
+        deg1_base=deg1_base+math.pi
+    end
+    deg1_tri=math.asin(h/a)
+    deg1=deg1_base+deg1_tri
+    deg2=math.pi-(0.5*math.pi-deg1_tri)-math.acos(h/b)
+    deg3=deg2-deg1
+    print(deg1)
+    sim.setJointTargetPosition(joint01,deg1)
+    sim.setJointTargetPosition(joint02,-deg2)
+    sim.setJointTargetPosition(joint03,deg3)
+end
+
+function coroutineMain()
+    joint01=sim.getObjectHandle('joint1')
+    joint02=sim.getObjectHandle('joint2')
+    joint03=sim.getObjectHandle('joint3')
+    jointz=sim.getObjectHandle('jointz')
+    sim.setJointTargetPosition(joint01,0)
+    sim.setJointTargetPosition(joint02,0)
+    sim.setJointTargetPosition(joint03,0)
+    sim.setJointTargetPosition(jointz,0)
+    sim.setIntegerSignal("pad_switch",1)
+    sim.setJointTargetPosition(jointz,-0.05)
+    sim.wait(3)
+    sim.setJointTargetPosition(jointz,0)
+    while sim.getSimulationState()~=sim.simulation_advancing_abouttostop do 
+    moving(0.2,0.7)
+        sim.wait(3)
+        sim.setIntegerSignal("pad_switch",0)
+        sim.wait(3)
+        sim.setIntegerSignal("pad_switch",1)
+        sim.setJointTargetPosition(jointz,-0.05)
+        sim.wait(3)
+        sim.setJointTargetPosition(jointz,0)
+        sim.wait(3)
+        moving(-0.3,-0.55)
+        sim.wait(3)
+        sim.setIntegerSignal("pad_switch",0)
+        sim.wait(3)
+        sim.setIntegerSignal("pad_switch",1)
+        sim.setJointTargetPosition(jointz,-0.05)
+        sim.wait(3)
+        sim.setJointTargetPosition(jointz,0)
+        sim.wait(3)
+    end
+    end</pre>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/kIpIVjtDk-g" title="YouTube video player" width="560"></iframe></p>
+<h4>項目五:Python remote API 逆向運動學函式</h4>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">import sim as vrep
+import math
+import random
+import time
+import math
+
+def moving(x,y):
+    a=0.4
+    b=0.4
+    c=math.pow((math.pow(x,2)+math.pow(y,2)),0.5)
+    s=(a+b+c)/2
+    area=math.pow((s*(s-a)*(s-b)*(s-c)),0.5)
+    h=area/(2*c)
+    deg1_base=math.atan(x/y)
+    if x&lt;0 and y&lt;0 :
+        deg_base1=deg1_base+math.pi
+    
+    deg1_tri=math.asin(h/a)
+    deg1=deg1_base+deg1_tri
+    deg2=math.pi-(0.5*math.pi-deg1_tri)-math.acos(h/b)
+    deg3=deg2-deg1
+    vrep.simxSetJointTargetPosition(clientID,joint01,deg1,opmode)
+    vrep.simxSetJointTargetPosition(clientID,joint02,-deg2,opmode)
+    vrep.simxSetJointTargetPosition(clientID,joint03,deg3,opmode)
+
+print ('Start')
+ 
+vrep.simxFinish(-1)
+ 
+clientID = vrep.simxStart('192.168.0.10', 19997, True, True, 5000, 5)
+
+if clientID != -1:
+    print ('Connected to remote API server')
+
+    res = vrep.simxAddStatusbarMessage(
+        clientID, "This is teach by 40823214 ",
+        vrep.simx_opmode_oneshot)
+    if res not in (vrep.simx_return_ok, vrep.simx_return_novalue_flag):
+        print("Could not add a message to the status bar.")
+
+
+    opmode = vrep.simx_opmode_oneshot_wait
+    STREAMING = vrep.simx_opmode_streaming
+
+
+    vrep.simxStartSimulation(clientID, opmode)
+    ret,joint01=vrep.simxGetObjectHandle(clientID,"joint1",opmode)
+    ret,joint02=vrep.simxGetObjectHandle(clientID,"joint2",opmode)
+    ret,joint03=vrep.simxGetObjectHandle(clientID,"joint3",opmode)
+    ret,jointz=vrep.simxGetObjectHandle(clientID,"jointz",opmode)
+    
+    vrep.simxSetJointTargetPosition(clientID,joint01,0,opmode)
+    vrep.simxSetJointTargetPosition(clientID,joint02,0,opmode)
+    vrep.simxSetJointTargetPosition(clientID,joint03,0,opmode)
+    vrep.simxSetIntegerSignal(clientID,"pad_switch",1,opmode)
+    vrep.simxSetJointTargetPosition(clientID,jointz,-0.055,opmode)
+    time.sleep(3)
+    vrep.simxSetJointTargetPosition(clientID,jointz,0,opmode)
+    
+    while True:
+        moving(0.2,0.7)
+        time.sleep(3)
+        vrep.simxSetIntegerSignal(clientID,"pad_switch",0,opmode)
+        time.sleep(3)
+        vrep.simxSetIntegerSignal(clientID,"pad_switch",1,opmode)
+        vrep.simxSetJointTargetPosition(clientID,jointz,-0.055,opmode)
+        time.sleep(3)
+        vrep.simxSetJointTargetPosition(clientID,jointz,0,opmode)
+        moving(-0.3,-0.6)
+        time.sleep(3)
+        vrep.simxSetIntegerSignal(clientID,"pad_switch",0,opmode)
+        time.sleep(3)
+        vrep.simxSetIntegerSignal(clientID,"pad_switch",1,opmode)
+        vrep.simxSetJointTargetPosition(clientID,jointz,-0.055,opmode)
+        time.sleep(3)
+        vrep.simxSetJointTargetPosition(clientID,jointz,0,opmode)
+            
+            </pre>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/5WaXftO6c_Y" title="YouTube video player" width="560"></iframe>----------</p>
+<p>"參考40823214的2部直播影片"</p>
+<p>影片1:</p>
+<h4><a href="https://www.youtube.com/watch?v=GUUKSgN93eI" rel="nofollow">https://www.youtube.com/watch?v=GUUKSgN93eI</a></h4>
+<p>影片2:</p>
+<h4><a href="https://www.youtube.com/watch?v=gZd9KlVS9BI" rel="nofollow">https://www.youtube.com/watch?v=gZd9KlVS9BI</a></h4>
+<p></p>
+<p></p>
+<h2>w17</h2>
 <h2>w18</h2>
 <h1>影片</h1>
 <h4>每週拍影片紀錄進度&amp;過程。</h4>
